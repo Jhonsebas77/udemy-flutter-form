@@ -3,9 +3,24 @@ import 'package:udemy_form_app/src/bloc/login_bloc.dart';
 export 'package:udemy_form_app/src/bloc/login_bloc.dart';
 
 class Provider extends InheritedWidget {
+  static Provider _instance;
+
+  factory Provider({
+    Key key,
+    Widget child,
+  }) {
+    if (_instance == null) {
+      _instance = new Provider._internal(
+        key: key,
+        child: child,
+      );
+    }
+    return _instance;
+  }
+
   final loginBloc = LoginBloc();
 
-  Provider({
+  Provider._internal({
     Key key,
     Widget child,
   }) : super(
