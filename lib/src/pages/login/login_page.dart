@@ -152,7 +152,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   height: 30,
                 ),
-                _buildButton(),
+                _buildButton(bloc),
               ],
             ),
           ),
@@ -216,26 +216,34 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _buildButton() {
-    return RaisedButton(
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 80,
-          vertical: 15,
-        ),
-        child: Text(
-          'Login',
-        ),
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          5,
-        ),
-      ),
-      elevation: 0.0,
-      color: Colors.green[900],
-      textColor: Colors.white,
-      onPressed: () {},
+  Widget _buildButton(LoginBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.formValidStream,
+      builder: (
+        BuildContext context,
+        AsyncSnapshot snapshot,
+      ) {
+        return RaisedButton(
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 80,
+              vertical: 15,
+            ),
+            child: Text(
+              'Login',
+            ),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              5,
+            ),
+          ),
+          elevation: 0.0,
+          color: Colors.green[900],
+          textColor: Colors.white,
+          onPressed: snapshot.hasData ? () {} : null,
+        );
+      },
     );
   }
 }
