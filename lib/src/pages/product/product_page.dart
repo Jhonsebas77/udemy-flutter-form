@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:udemy_form_app/src/utils/utils.dart' as utils;
 
 class ProductPage extends StatefulWidget {
   ProductPage({Key key}) : super(key: key);
@@ -8,6 +9,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,11 +36,12 @@ class _ProductPageState extends State<ProductPage> {
             15,
           ),
           child: Form(
+            key: formKey,
             child: Column(
               children: [
                 _buildName(),
                 _buildPrice(),
-                _buildSummitButton(),
+                _buildSumitButton(),
               ],
             ),
           ),
@@ -53,6 +56,13 @@ class _ProductPageState extends State<ProductPage> {
       decoration: InputDecoration(
         labelText: 'Product Name',
       ),
+      validator: (value) {
+        if (value.length < 3) {
+          return 'Add the name of the product';
+        } else {
+          return null;
+        }
+      },
     );
   }
 
@@ -64,12 +74,19 @@ class _ProductPageState extends State<ProductPage> {
       decoration: InputDecoration(
         labelText: 'Product Price',
       ),
+      validator: (value) {
+        if (utils.isNumeric(value)) {
+          return null;
+        } else {
+          return 'Only Numbers';
+        }
+      },
     );
   }
 
-  RaisedButton _buildSummitButton() {
+  Widget _buildSumitButton() {
     return RaisedButton.icon(
-      onPressed: () {},
+      onPressed: _submit,
       icon: Icon(Icons.save),
       label: Text(
         'Save Info',
@@ -82,5 +99,9 @@ class _ProductPageState extends State<ProductPage> {
       ),
       textColor: Colors.white,
     );
+  }
+
+  void _submit() {
+    if (!formKey.currentState.validate()) return;
   }
 }
