@@ -9,6 +9,7 @@ class LoginPage extends StatelessWidget {
       body: Stack(
         children: [
           _buildBackground(context),
+          _buildLoginForm(context),
         ],
       ),
     );
@@ -95,6 +96,130 @@ class LoginPage extends StatelessWidget {
         ),
         _buildLogo(),
       ],
+    );
+  }
+
+  Widget _buildLoginForm(BuildContext context) {
+    final _sizeScreen = MediaQuery.of(context).size;
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SafeArea(
+            child: Container(
+              height: 190,
+            ),
+          ),
+          Container(
+            width: _sizeScreen.width * 0.85,
+            margin: EdgeInsets.symmetric(
+              vertical: 30,
+            ),
+            padding: EdgeInsets.symmetric(
+              vertical: 50,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(
+                5,
+              ),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 3.0,
+                  offset: Offset(
+                    0.0,
+                    5.0,
+                  ),
+                  spreadRadius: 1,
+                )
+              ],
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'Login',
+                ),
+                SizedBox(
+                  height: 60,
+                ),
+                _buildEmail(),
+                SizedBox(
+                  height: 30,
+                ),
+                _buildPassword(),
+                SizedBox(
+                  height: 30,
+                ),
+                _buildButton(),
+              ],
+            ),
+          ),
+          Text('Forget Password'),
+          SizedBox(
+            height: 100,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEmail() {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 20,
+      ),
+      child: TextField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          icon: Icon(
+            Icons.alternate_email,
+            color: Colors.green[900],
+          ),
+          hintText: 'test@mail.com',
+          labelText: 'Email',
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPassword() {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 20,
+      ),
+      child: TextField(
+        obscureText: true,
+        decoration: InputDecoration(
+          icon: Icon(
+            Icons.lock_outline,
+            color: Colors.green[900],
+          ),
+          labelText: 'Password',
+        ),
+      ),
+    );
+  }
+
+  Widget _buildButton() {
+    return RaisedButton(
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 80,
+          vertical: 15,
+        ),
+        child: Text(
+          'Login',
+        ),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          5,
+        ),
+      ),
+      elevation: 0.0,
+      color: Colors.green[900],
+      textColor: Colors.white,
+      onPressed: () {},
     );
   }
 }
