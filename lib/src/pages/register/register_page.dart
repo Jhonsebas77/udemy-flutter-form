@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:udemy_form_app/src/bloc/provider.dart';
 import 'package:udemy_form_app/src/providers/user_provider.dart';
+import 'package:udemy_form_app/src/utils/utils.dart';
 
 class RegisterPage extends StatelessWidget {
   final userProvider = new UserProvider();
@@ -253,7 +254,12 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  _register(LoginBloc bloc, BuildContext context) {
-    userProvider.newUser(bloc.email, bloc.password);
+  _register(LoginBloc bloc, BuildContext context) async {
+    Map info = await userProvider.newUser(bloc.email, bloc.password);
+    if (info['ok']) {
+      Navigator.pushReplacementNamed(context, 'home');
+    } else {
+      showAlertMessage(context, info['message']);
+    }
   }
 }
