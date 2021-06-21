@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:udemy_form_app/src/bloc/provider.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key key}) : super(key: key);
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +139,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Login',
+                  'Register',
                 ),
                 SizedBox(
                   height: 60,
@@ -157,9 +157,8 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           FlatButton(
-            onPressed: () =>
-                Navigator.pushReplacementNamed(context, 'register'),
-            child: Text('Create new account'),
+            onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
+            child: Text('Already have account?'),
           ),
           SizedBox(
             height: 100,
@@ -234,7 +233,7 @@ class LoginPage extends StatelessWidget {
               vertical: 15,
             ),
             child: Text(
-              'Login',
+              'Register',
             ),
           ),
           shape: RoundedRectangleBorder(
