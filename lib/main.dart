@@ -4,8 +4,14 @@ import 'package:udemy_form_app/src/pages/home/home_page.dart';
 import 'package:udemy_form_app/src/pages/login/login_page.dart';
 import 'package:udemy_form_app/src/pages/product/product_page.dart';
 import 'package:udemy_form_app/src/pages/register/register_page.dart';
+import 'package:udemy_form_app/src/userPreferences/user_preferences.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = new UserPreferences();
+  await prefs.initPrefs();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override

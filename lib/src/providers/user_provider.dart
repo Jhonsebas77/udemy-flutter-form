@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:udemy_form_app/src/userPreferences/user_preferences.dart';
 
 class UserProvider {
+  final String _firebaseToken = 'AIzaSyCuAXz-kyq5z5-NHzaI4jkbQHvwEZK58pc';
+  final _prefs = new UserPreferences();
   Future loginUser(String email, String password) async {
-    final String _firebaseToken = 'AIzaSyCuAXz-kyq5z5-NHzaI4jkbQHvwEZK58pc';
     final authData = {
       'email': email,
       'password': password,
@@ -19,7 +21,7 @@ class UserProvider {
     Map<String, dynamic> decodeResponse = json.decode(response.body);
     print(decodeResponse);
     if (decodeResponse.containsKey('idToken')) {
-      // Save the Token
+      _prefs.token = decodeResponse['idToken'];
       return {'ok': true, 'token': decodeResponse['idToken']};
     } else {
       return {'ok': false, 'message': decodeResponse['error']['message']};
@@ -27,7 +29,6 @@ class UserProvider {
   }
 
   Future<Map<String, dynamic>> newUser(String email, String password) async {
-    final String _firebaseToken = 'AIzaSyCuAXz-kyq5z5-NHzaI4jkbQHvwEZK58pc';
     final authData = {
       'email': email,
       'password': password,
@@ -42,7 +43,7 @@ class UserProvider {
     Map<String, dynamic> decodeResponse = json.decode(response.body);
     print(decodeResponse);
     if (decodeResponse.containsKey('idToken')) {
-      // Save the Token
+      _prefs.token = decodeResponse['idToken'];
       return {'ok': true, 'token': decodeResponse['idToken']};
     } else {
       return {'ok': false, 'message': decodeResponse['error']['message']};
