@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:udemy_form_app/src/bloc/provider.dart';
+import 'package:udemy_form_app/src/providers/user_provider.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({Key key}) : super(key: key);
+  final userProvider = new UserProvider();
+
+  RegisterPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -244,12 +247,13 @@ class RegisterPage extends StatelessWidget {
           elevation: 0.0,
           color: Colors.green[900],
           textColor: Colors.white,
-          onPressed: snapshot.hasData ? () => _login(bloc, context) : null,
+          onPressed: snapshot.hasData ? () => _register(bloc, context) : null,
         );
       },
     );
   }
 
-  _login(LoginBloc bloc, BuildContext context) =>
-      Navigator.pushReplacementNamed(context, 'home');
+  _register(LoginBloc bloc, BuildContext context) {
+    userProvider.newUser(bloc.email, bloc.password);
+  }
 }
