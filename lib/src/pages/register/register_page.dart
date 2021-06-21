@@ -3,9 +3,10 @@ import 'package:udemy_form_app/src/bloc/provider.dart';
 import 'package:udemy_form_app/src/providers/user_provider.dart';
 import 'package:udemy_form_app/src/utils/utils.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   final userProvider = new UserProvider();
-  LoginPage({Key key}) : super(key: key);
+
+  RegisterPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +143,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Login',
+                  'Register',
                 ),
                 SizedBox(
                   height: 60,
@@ -160,9 +161,8 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           FlatButton(
-            onPressed: () =>
-                Navigator.pushReplacementNamed(context, 'register'),
-            child: Text('Create new account'),
+            onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
+            child: Text('Already have account?'),
           ),
           SizedBox(
             height: 100,
@@ -237,7 +237,7 @@ class LoginPage extends StatelessWidget {
               vertical: 15,
             ),
             child: Text(
-              'Login',
+              'Register',
             ),
           ),
           shape: RoundedRectangleBorder(
@@ -248,14 +248,14 @@ class LoginPage extends StatelessWidget {
           elevation: 0.0,
           color: Colors.green[900],
           textColor: Colors.white,
-          onPressed: snapshot.hasData ? () => _login(bloc, context) : null,
+          onPressed: snapshot.hasData ? () => _register(bloc, context) : null,
         );
       },
     );
   }
 
-  _login(LoginBloc bloc, BuildContext context) async {
-    Map info = await userProvider.loginUser(bloc.email, bloc.password);
+  _register(LoginBloc bloc, BuildContext context) async {
+    Map info = await userProvider.newUser(bloc.email, bloc.password);
     if (info['ok']) {
       Navigator.pushReplacementNamed(context, 'home');
     } else {
