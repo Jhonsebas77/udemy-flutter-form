@@ -75,8 +75,14 @@ class HomePage extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        title: Text('${product.title} | ${product.value}'),
-        subtitle: Text('${product.id}'),
+        leading: Icon(
+          (product.available) ? Icons.local_offer : Icons.local_offer_outlined,
+        ),
+        trailing: Icon(
+          Icons.arrow_forward_ios_sharp,
+        ),
+        title: Text('${product.title}'),
+        subtitle: Text('\$ ${product.value}'),
         onTap: () => Navigator.pushNamed(
           context,
           'product',
