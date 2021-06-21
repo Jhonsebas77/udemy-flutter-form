@@ -8,12 +8,10 @@ class ProductProvider {
 
   Future<bool> createProduct(ProductModel product) async {
     final url = '$_url/products.json';
-    final response = await http.post(
+    await http.post(
       url,
       body: productModelToJson(product),
     );
-    final decodeData = json.decode(response.body);
-    print('DECODE -> $decodeData');
     return true;
   }
 
@@ -31,7 +29,14 @@ class ProductProvider {
 
       _products.add(_tempProduct);
     });
-    print('_products -> $_products');
     return _products;
+  }
+
+  Future<int> deleteProduct(String id) async {
+    final url = '$_url/products/$id.json';
+    await http.delete(
+      url,
+    );
+    return 1;
   }
 }

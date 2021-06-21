@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
     return Dismissible(
       key: UniqueKey(),
       onDismissed: (direction) {
-        // TODO: Delete Method;
+        productProvider.deleteProduct(product.id);
       },
       background: Container(
         color: Colors.red,
