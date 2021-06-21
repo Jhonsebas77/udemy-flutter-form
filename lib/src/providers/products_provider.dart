@@ -39,4 +39,13 @@ class ProductProvider {
     );
     return 1;
   }
+
+  Future<bool> updateProduct(ProductModel product) async {
+    final url = '$_url/products/${product.id}.json';
+    await http.put(
+      url,
+      body: productModelToJson(product),
+    );
+    return true;
+  }
 }

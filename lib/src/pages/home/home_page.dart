@@ -67,11 +67,21 @@ class HomePage extends StatelessWidget {
       },
       background: Container(
         color: Colors.red,
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        alignment: AlignmentDirectional.centerStart,
+        child: Icon(
+          Icons.delete,
+          color: Colors.white,
+        ),
       ),
       child: ListTile(
         title: Text('${product.title} | ${product.value}'),
         subtitle: Text('${product.id}'),
-        onTap: () => Navigator.pushNamed(context, 'product'),
+        onTap: () => Navigator.pushNamed(
+          context,
+          'product',
+          arguments: product,
+        ),
       ),
     );
   }
