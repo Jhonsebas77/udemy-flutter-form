@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:udemy_form_app/src/bloc/provider.dart';
+import 'package:udemy_form_app/src/providers/user_provider.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key key}) : super(key: key);
+  final userProvider = new UserProvider();
+  LoginPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -251,6 +253,8 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _login(LoginBloc bloc, BuildContext context) =>
-      Navigator.pushReplacementNamed(context, 'home');
+  _login(LoginBloc bloc, BuildContext context) {
+    userProvider.loginUser(bloc.email, bloc.password);
+    // Navigator.pushReplacementNamed(context, 'home');
+  }
 }
