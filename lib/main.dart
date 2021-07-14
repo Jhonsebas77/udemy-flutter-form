@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:udemy_form_app/src/bloc/provider.dart';
-import 'package:udemy_form_app/src/pages/home/home_page.dart';
-import 'package:udemy_form_app/src/pages/login/login_page.dart';
-import 'package:udemy_form_app/src/pages/product/product_page.dart';
-import 'package:udemy_form_app/src/pages/register/register_page.dart';
+import 'package:udemy_form_app/src/pages/screens.dart';
 import 'package:udemy_form_app/src/userPreferences/user_preferences.dart';
 
 Future<void> main() async {
@@ -22,10 +19,10 @@ class MyApp extends StatelessWidget {
         title: 'Material App',
         initialRoute: 'login',
         routes: {
-          'login': (BuildContext context) => LoginPage(),
-          'register': (BuildContext context) => RegisterPage(),
-          'home': (BuildContext context) => HomePage(),
-          'product': (BuildContext context) => ProductPage(),
+          'login': (_) => LoginPage(),
+          'register': (_) => RegisterPage(),
+          'home': (_) => HomePage(),
+          'product': (_) => ProductPage(),
         },
         theme: ThemeData(
           primaryColor: Colors.green,
