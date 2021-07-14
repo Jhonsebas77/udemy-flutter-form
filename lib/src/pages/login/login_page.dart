@@ -3,6 +3,7 @@ import 'package:udemy_form_app/src/bloc/provider.dart';
 import 'package:udemy_form_app/src/pages/widgets/card_container.dart';
 import 'package:udemy_form_app/src/pages/widgets/widgets.dart';
 import 'package:udemy_form_app/src/providers/user_provider.dart';
+import 'package:udemy_form_app/src/ui/input_decorations.dart';
 import 'package:udemy_form_app/src/utils/utils.dart';
 
 class LoginPage extends StatelessWidget {
@@ -75,13 +76,10 @@ class LoginPage extends StatelessWidget {
           ),
           child: TextField(
             keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              icon: Icon(
-                Icons.alternate_email,
-                color: Colors.green[900],
-              ),
-              hintText: 'test@mail.com',
+            decoration: InputsDecorations.authInputDecoration(
               labelText: 'Email',
+              hintText: 'test@mail.com',
+              icons: Icons.alternate_email,
               errorText: snapshot.error,
             ),
             onChanged: (value) => bloc.changeEmail(value),
@@ -101,12 +99,9 @@ class LoginPage extends StatelessWidget {
           ),
           child: TextField(
             obscureText: true,
-            decoration: InputDecoration(
-              icon: Icon(
-                Icons.lock_outline,
-                color: Colors.green[900],
-              ),
+            decoration: InputsDecorations.authInputDecoration(
               labelText: 'Password',
+              icons: Icons.lock_outline,
               errorText: snapshot.error,
             ),
             onChanged: bloc.changePassword,
