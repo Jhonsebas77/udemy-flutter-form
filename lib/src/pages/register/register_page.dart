@@ -77,7 +77,7 @@ class RegisterPage extends StatelessWidget {
               ],
             ),
           ),
-          FlatButton(
+          TextButton(
             onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
             child: Text('Already have account?'),
           ),
@@ -147,7 +147,7 @@ class RegisterPage extends StatelessWidget {
         BuildContext context,
         AsyncSnapshot snapshot,
       ) {
-        return RaisedButton(
+        return ElevatedButton(
           child: Container(
             padding: EdgeInsets.symmetric(
               horizontal: 80,
@@ -157,14 +157,6 @@ class RegisterPage extends StatelessWidget {
               'Register',
             ),
           ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              5,
-            ),
-          ),
-          elevation: 0.0,
-          color: Colors.green[900],
-          textColor: Colors.white,
           onPressed: snapshot.hasData ? () => _register(bloc, context) : null,
         );
       },

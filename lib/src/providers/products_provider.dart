@@ -23,7 +23,7 @@ class ProductProvider {
       url,
     );
     final Map<String, dynamic> decodeData = json.decode(response.body);
-    final List<ProductModel> _products = new List();
+    final List<ProductModel> _products = [];
     if (decodeData == null) return [];
     decodeData.forEach((id, _product) {
       final _tempProduct = ProductModel.fromJson(_product);
