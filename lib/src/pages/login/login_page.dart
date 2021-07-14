@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:udemy_form_app/src/bloc/provider.dart';
+import 'package:udemy_form_app/src/pages/widgets/card_container.dart';
 import 'package:udemy_form_app/src/pages/widgets/widgets.dart';
 import 'package:udemy_form_app/src/providers/user_provider.dart';
 import 'package:udemy_form_app/src/utils/utils.dart';
@@ -22,7 +23,6 @@ class LoginPage extends StatelessWidget {
 
   Widget _buildLoginForm(BuildContext context) {
     final bloc = Provider.of(context);
-    final _sizeScreen = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -31,31 +31,7 @@ class LoginPage extends StatelessWidget {
               height: 190,
             ),
           ),
-          Container(
-            width: _sizeScreen.width * 0.85,
-            margin: EdgeInsets.symmetric(
-              vertical: 30,
-            ),
-            padding: EdgeInsets.symmetric(
-              vertical: 50,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(
-                5,
-              ),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 3.0,
-                  offset: Offset(
-                    0.0,
-                    5.0,
-                  ),
-                  spreadRadius: 1,
-                )
-              ],
-            ),
+          CardContainer(
             child: Column(
               children: [
                 Text(
