@@ -101,19 +101,12 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Widget _buildSumitButton() {
-    return RaisedButton.icon(
+    return ElevatedButton.icon(
       onPressed: (_saving) ? null : _submit,
       icon: Icon(Icons.save),
       label: Text(
         'Save Info',
       ),
-      color: Colors.green,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          20,
-        ),
-      ),
-      textColor: Colors.white,
     );
   }
 

@@ -17,7 +17,7 @@ void showAlertMessage(BuildContext context, String message) {
         message,
       ),
       actions: [
-        FlatButton(
+        TextButton(
           onPressed: () => Navigator.of(context).pop(),
           child: Text('Ok'),
         ),

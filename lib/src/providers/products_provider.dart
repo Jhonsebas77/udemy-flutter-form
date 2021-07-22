@@ -5,11 +5,19 @@ import 'package:udemy_form_app/src/models/product_model.dart';
 import 'package:udemy_form_app/src/userPreferences/user_preferences.dart';
 
 class ProductProvider {
-  final String _url = 'https://flutter-tools-jsob-default-rtdb.firebaseio.com';
+  final String _url = 'flutter-tools-jsob-default-rtdb.firebaseio.com';
   final _prefs = new UserPreferences();
+  final String _productsUrl = '/products.json';
 
   Future<bool> createProduct(ProductModel product) async {
-    final url = '$_url/products.json?auth=${_prefs.token}';
+    final url = Uri.https(
+      _url,
+      _productsUrl,
+      {
+        'auth': _prefs.token,
+      },
+    );
+    print('createProduct url -> $url');
     await http.post(
       url,
       body: productModelToJson(product),
@@ -18,12 +26,19 @@ class ProductProvider {
   }
 
   Future<List<ProductModel>> loadProducts() async {
-    final url = '$_url/products.json?auth=${_prefs.token}';
+    final url = Uri.https(
+      _url,
+      _productsUrl,
+      {
+        'auth': _prefs.token,
+      },
+    );
+    print('loadProducts url -> $url');
     final response = await http.get(
       url,
     );
     final Map<String, dynamic> decodeData = json.decode(response.body);
-    final List<ProductModel> _products = new List();
+    final List<ProductModel> _products = [];
     if (decodeData == null) return [];
     decodeData.forEach((id, _product) {
       final _tempProduct = ProductModel.fromJson(_product);
@@ -35,7 +50,13 @@ class ProductProvider {
   }
 
   Future<int> deleteProduct(String id) async {
-    final url = '$_url/products/$id.json?auth=${_prefs.token}';
+    final url = Uri.https(
+      _url,
+      _productsUrl,
+      {
+        'auth': _prefs.token,
+      },
+    );
     await http.delete(
       url,
     );
@@ -43,7 +64,14 @@ class ProductProvider {
   }
 
   Future<bool> updateProduct(ProductModel product) async {
-    final url = '$_url/products/${product.id}.json?auth=${_prefs.token}';
+    final url = Uri.https(
+      _url,
+      '/products/${product.id}.json',
+      {
+        'auth': _prefs.token,
+      },
+    );
+    print('updateProduct url -> $url');
     await http.put(
       url,
       body: productModelToJson(product),
