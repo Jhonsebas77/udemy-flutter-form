@@ -12,8 +12,14 @@ class UserProvider {
       'password': password,
       'returnSecureToken': true,
     };
-    final url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=$_firebaseToken';
+    final url = Uri.https(
+      'identitytoolkit.googleapis.com',
+      '/v1/accounts:signInWithPassword',
+      {
+        'key': _firebaseToken,
+      },
+    );
+    print('loginUser url -> $url');
     final response = await http.post(
       url,
       body: json.encode(authData),
@@ -34,8 +40,14 @@ class UserProvider {
       'password': password,
       'returnSecureToken': true,
     };
-    final url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=$_firebaseToken';
+    final url = Uri.https(
+      'identitytoolkit.googleapis.com',
+      '/v1/accounts:signUp',
+      {
+        'key': _firebaseToken,
+      },
+    );
+    print('newUser url -> $url');
     final response = await http.post(
       url,
       body: json.encode(authData),
